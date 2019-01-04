@@ -54,10 +54,10 @@ This is going to be an app to show news articles about whatever. Like the Wall S
 #TL;DR
 I'm making a news web app with different levels of access and maybe server side rendering so that I could show them a preview if they are not logged in first.
 
-I want to have the backend done by the end of the first day. (Friday) (With server side rendering if I'm lucky)
++ I want to have the backend done by the end of the first day. (Friday) (With server side rendering if I'm lucky)
 
-I want to get all my componenents to render depending on the level of access the second day (the only difference is basically the buttons that are rendered to the page) (Saturday)
++ I want to get all my componenents to render depending on the level of access the second day (the only difference is basically the buttons that are rendered to the page) (Saturday)
 
-I want to have these components functional for every user access level on the third day (Sunday)
++ I want to have these components functional for every user access level on the third day (Sunday)
 
-I want to have authorization working on the fourth day for every access level(Monday)
++ I want to have authorization working on the fourth day for every access level(Monday)
