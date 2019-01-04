@@ -3,16 +3,26 @@ This is going to be an app to show news articles about whatever. Like the Wall S
 
 ## Technologies to be used
 + Backend
-    + Ruby on Rails or express.js (idk yet)
+    + Express.js or Ruby on Rails (undecided)
 + Frontend 
     + React.js
 
 ## Features List
 + I intend to have server side rendering so that you could only see an entire article after logging in (or by going to the "signedin/article/:id" route)
+
 + An articles page where you see trending articles? (This might be hardcoded)
+
 + A page where you could see all of your articles and here you could edit them if you want (in a route similar to "signedin/mine/article") or delete them of course.
+
 ### ERD
 ### Wireframes
+![]()
+![]()
+![]()
+![]()
+![]()
+![]()
+![]()
 ### M.V.P.
 + You could see all the posts from specific users (no search function)("loggedin/:userid/posts)
 
@@ -33,5 +43,9 @@ This is going to be an app to show news articles about whatever. Like the Wall S
 
 + I would handle the scrolling method of the article by server side rendering instead of the front end.
 
-+ 
-### 
++ Likes and dislikes on news articles?
+
++ Actual Email confirmation 
+
+### Code Example
+### Installation instructions
