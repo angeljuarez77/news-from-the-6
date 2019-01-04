@@ -3,10 +3,10 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const bcrypt = require('bcrypt-nodejs');
-
+const { passport, sign } = require('./auth');
 const { Post, User } = require('./models');
-const PORT = process.env.PORT || 3001;
 
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(logger('dev'));
@@ -27,12 +27,17 @@ app.get('/users', async (req, res) => {
         res.json({ users });
     } catch (e) {console.log(e)}
 });
+// for a new user account creation
 app.post('/users', async (req, res) => {
     try {
         const user = req.body;
         await User.create(user);
-        // const token 
-        res.json({ user });
+        const { user_name, email } = user;
+        const token = sign({
+            user_name, 
+            email
+        })
+        res.json({ user, token });
     } catch (e) {console.log(e)}
 });
 
