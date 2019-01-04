@@ -16,13 +16,13 @@ This is going to be an app to show news articles about whatever. Like the Wall S
 
 ### ERD
 ### Wireframes
-![]()
-![]()
-![]()
-![]()
-![]()
-![]()
-![]()
+![The landing page](https://github.com/angeljuarez77/news-from-the-6/blob/master/wireframe/landingpage.jpg)
+![](https://github.com/angeljuarez77/news-from-the-6/blob/master/wireframe/loggedin.jpg)
+![](https://github.com/angeljuarez77/news-from-the-6/blob/master/wireframe/loggedin:posts.jpg)
+![](https://github.com/angeljuarez77/news-from-the-6/blob/master/wireframe/loggedin:userid:articleid.jpg)
+![](https://github.com/angeljuarez77/news-from-the-6/blob/master/wireframe/loggedin:userid:posts.jpg)
+![](https://github.com/angeljuarez77/news-from-the-6/blob/master/wireframe/mypost:id.jpg)
+![](https://github.com/angeljuarez77/news-from-the-6/blob/master/wireframe/mypost:id:edit.jpg)
 ### M.V.P.
 + You could see all the posts from specific users (no search function)("loggedin/:userid/posts)
 
