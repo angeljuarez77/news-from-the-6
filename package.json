@@ -1,0 +1,40 @@
+{
+  "name": "project4",
+  "version": "1.0.0",
+  "description": "This is going to be an app to show news articles about whatever. Like the Wall Street Journal and other news websites.",
+  "main": "models.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "resetDb": "node resetDb.js",
+    "seed": "node seed.js",
+    "debug": "nodemon --inspect-brk server.js",
+    "repop": "node resetDb.js && node seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angeljuarez77/news-from-the-6.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angeljuarez77/news-from-the-6/issues"
+  },
+  "homepage": "https://github.com/angeljuarez77/news-from-the-6#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.3",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "pg": "^7.7.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.42.0"
+  }
+}
