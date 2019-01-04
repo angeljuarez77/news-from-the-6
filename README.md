@@ -35,8 +35,9 @@ This is going to be an app to show news articles about whatever. Like the Wall S
 
 + You could scroll down an article if you're not logged in but after a certain point it wouldn't allow you to keep scrolling unless you're logged in
 
-### Post M.V.P.
 + Auth implementation (basically seal away certain routes to certain people. Everyone has access to loggedin as long as their credentials is right. Then some people would have access to journalist functionalities and very few would have admin power. I don't know how I'm going to do this.)
+
+### Post M.V.P.
 
 + Make it look pretty. Such as profile pictures and a bio.
 
