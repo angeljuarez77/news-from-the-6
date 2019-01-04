@@ -15,6 +15,7 @@ This is going to be an app to show news articles about whatever. Like the Wall S
 + A page where you could see all of your articles and here you could edit them if you want (in a route similar to "signedin/mine/article") or delete them of course.
 
 ### ERD
+![]()
 ### Wireframes
 ![The landing page](https://github.com/angeljuarez77/news-from-the-6/blob/master/wireframe/landingpage.jpg)
 ![](https://github.com/angeljuarez77/news-from-the-6/blob/master/wireframe/loggedin.jpg)
