@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req, res) => res.send('Hello World!'));
+// this is the user signing in to our web app
 app.post('/', async (req, res) => {
     try {
         const attempt = await User.findAll({
@@ -22,7 +23,7 @@ app.post('/', async (req, res) => {
         }});
        const userresp = attempt[0].dataValues;
        const validation = bcrypt.compareSync(req.body.password, userresp.password);
-       const { user_name, password, access_level } = userresp;
+       const { user_name, access_level } = userresp;
        if(validation){
            const jwt = sign({
                user_name,
@@ -34,6 +35,7 @@ app.post('/', async (req, res) => {
        }
     } catch (e) { console.log(e) }
 })
+
 app.get('/users', async (req, res) => {
     try {
         const users = await User.findAll();
@@ -54,5 +56,36 @@ app.post('/users', async (req, res) => {
         res.json({ user, token });
     } catch (e) {console.log(e)}
 });
+// lets start off by making the routes for the regular users
+app.get('/loggedin', async (req, res) => {
+    try { 
+        const posts = await Post.findAll();
+        res.json({ posts });
+    } catch (e) {console.log(e)}
+});
+app.get('/loggedin/:journalistid', async (req, res) => {
+  try {
+    const posts = await Post.findAll({where: {user_id: req.params.journalistid}});
+    res.json({ posts });
+  } catch(e) {console.log(e)}
+});
+// for the journalists
+app.get('/loggedin/journalist/myposts', async (req, res) => {
+    try {
+      res.send('loggedin/journalist/myposts');
+    } catch(e) {
+        console.log(e);
+    }
+});
+app.post('/loggedin/journalist/posts', async (req, res) => {
+    try {
+        // take in jwt
+        // 
+        //  
+        await Post.create(req.body);
+        res.send(`Post with title ${req.body.title} created.`);
+    } catch(e){console.log(e)}
+});
 
+// for the admins
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));

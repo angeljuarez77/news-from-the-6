@@ -27,6 +27,9 @@ User.beforeCreate(async (user, options) => {
     user.password = password_encrypted;
 });
 
+Post.belongsTo(User, {through: 'users_posts'});
+// User.hasMany(Post, {through: 'users_posts'});
+
 module.exports = {
     sequelize,
     User,
