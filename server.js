@@ -18,7 +18,7 @@ app.post('/signin', async (req, res) => {
     try {
         const attempt = await User.findAll({
             where: {
-            email: req.body.email
+            user_name: req.body.user_name
         }});
        const userresp = attempt[0].dataValues;
        const validation = bcrypt.compareSync(req.body.password, userresp.password);
