@@ -13,9 +13,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/', (req, res) => res.send('Hello World!'));
-// this is the user signing in to our web app
-app.post('/', async (req, res) => {
+// everything with authentication
+app.post('/signin', async (req, res) => {
     try {
         const attempt = await User.findAll({
             where: {
@@ -34,15 +33,14 @@ app.post('/', async (req, res) => {
            res.json({message: "You got it wrong!"})
        }
     } catch (e) { console.log(e) }
-})
-
-app.get('/users', async (req, res) => {
+});
+// here I am trying to require a jwt
+app.get('/users', passport.authenticate('jwt', {session: false}), async (req, res) => {
     try {
         const users = await User.findAll();
         res.json({ users });
     } catch (e) {console.log(e)}
 });
-// for a new user account creation
 app.post('/users', async (req, res) => {
     try {
         const user = req.body;
