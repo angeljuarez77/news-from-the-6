@@ -56,36 +56,78 @@ app.post('/users', async (req, res) => {
         res.json({ user, token });
     } catch (e) {console.log(e)}
 });
-// lets start off by making the routes for the regular users
-app.get('/loggedin', async (req, res) => {
-    try { 
+
+// Full CRUD for posts
+app.get('/posts', async (req, res) => {
+    try {
         const posts = await Post.findAll();
         res.json({ posts });
-    } catch (e) {console.log(e)}
+    } catch(e){
+        console.log(e);
+    }
 });
-app.get('/loggedin/:journalistid', async (req, res) => {
-  try {
-    const posts = await Post.findAll({where: {user_id: req.params.journalistid}});
-    res.json({ posts });
-  } catch(e) {console.log(e)}
-});
-// for the journalists
-app.get('/loggedin/journalist/myposts', async (req, res) => {
+app.get('/post/:id', async (req, res) => {
     try {
-      res.send('loggedin/journalist/myposts');
+        const post = await Post.findByPk(req.params.id);
+        res.json({post});
+    } catch(e){
+        console.log(e);
+    }
+});
+// doesn't completely work. I would have to finish the associations in my db first
+app.get('/posts/:jid', async (req, res) => {
+    try {
+        const specificPosts = await Post.findAll({
+            where: {
+                user_id: req.params.jid
+           }
+        });
+        res.json({ specificPosts });
     } catch(e) {
         console.log(e);
     }
 });
-app.post('/loggedin/journalist/posts', async (req, res) => {
+app.post('/posts', async (req, res) => {
+ try {
+    await Post.create(req.body);
+ } catch (e){
+     console.log(e);
+ }
+})
+app.put('/post/:id', async (req, res) => {
     try {
-        // take in jwt
-        // 
-        //  
-        await Post.create(req.body);
-        res.send(`Post with title ${req.body.title} created.`);
-    } catch(e){console.log(e)}
+        let post = await Post.findByPk(req.params.id);
+        if (!!req.body.title && !!req.body.content){
+            // if both are being changed
+            await post.update({
+                title: req.body.title,
+                content: req.body.content
+            });
+            res.json(post);
+        } else if (!!req.body.content){
+            // if content is being changed
+            await post.update({content: req.body.content});
+            res.json(post)
+        } else if (!!req.body.title){
+            // in case only the title is being changed
+            await post.update({title: req.body.title});
+            res.json(post)
+        }
+    } catch(e) {
+        console.log(e);
+    }
 });
-
+app.delete('/posts/:id', async (req, res) => {
+    try {
+        await Post.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+        res.json({ message: `post with id ${req.params.id} deleted`});
+    } catch(e) {
+        console.log(e);
+    }
+});
 // for the admins
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
