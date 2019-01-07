@@ -28,7 +28,13 @@ app.post('/signin', async (req, res) => {
                user_name,
                access_level
            });
-           res.json({ jwt });
+           if(access_level === 1){
+            res.json({ jwt, view: 'loggedinnorm' });
+           } else if (access_level === 2){
+               res.json({jwt, view: 'loggedinjourny'})
+           } else if(access_level === 3){
+               res.json({jwt, view: 'loggedinadmin'})
+           }
        } else { 
            res.json({message: "You got it wrong!"})
        }
@@ -87,6 +93,7 @@ app.get('/posts/:jid', async (req, res) => {
 });
 app.post('/posts', async (req, res) => {
  try {
+    //
     await Post.create(req.body);
  } catch (e){
      console.log(e);

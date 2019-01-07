@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import Welcome from './components/Welcome'
 import axios from 'axios';
+import LoggedinNorm from './components/normie/LogginNorm';
+import Loggedinadmin from './components/admin/LoggedinAdmin';
+import LoggedinAdmin from './components/admin/LoggedinAdmin';
+import Loggedinjourny from './components/journalist/LoggedinJourny';
 
 class App extends Component {
   constructor(props){
@@ -19,7 +23,7 @@ class App extends Component {
 				password: '',
 			},
       token: null,
-      view: '',
+      view: 'welcome',
 		};
     this.logInSubmit = this.logInSubmit.bind(this);
     this.submitNew = this.submitNew.bind(this);
@@ -30,17 +34,18 @@ class App extends Component {
   submitNew(e){
 		e.preventDefault();
 		axios.post('http://localhost:3001/users', this.state.newUser)
-		.then(res => this.setState({token: res.data.jwt})).catch(e => console.log(e));
+		.then(res => this.setState({token: res.data.jwt, view: res.data.loggedin })).catch(e => console.log(e));
 	}
   logInSubmit(e){
 		e.preventDefault();
 		axios.post('http://localhost:3001/signin', this.state.login)
-		.then(res => this.setState({token: res.data.jwt})).catch(e => console.log(e));
+		.then(
+      res => 
+      this.setState({token: res.data.jwt, view: res.data.view})
+      ).catch(e => console.log(e));
   }
   
 	newUserInfo(e){
-		// set new account info to state
-		// send a post request to db
 		const field = e.target.id;
 		const value = e.target.value
 		this.setState(prevState => ({
@@ -60,13 +65,32 @@ class App extends Component {
   }
   
   switchViews(){
-
+    switch(this.state.view){
+      case 'loggedinnorm':
+      return (<LoggedinNorm />)
+      case 'loggedinadmin':
+      return(<LoggedinAdmin />)
+      case 'loggedinjourny':
+      return(<Loggedinjourny />)
+      case 'welcome':
+      return (<Welcome 
+        submitNew={this.submitNew} 
+        logInSubmit={this.logInSubmit} 
+        loginChange={this.loginChange} 
+        newUserInfo={this.newUserInfo} />)
+      default:
+      return (<Welcome 
+        submitNew={this.submitNew} 
+        logInSubmit={this.logInSubmit} 
+        loginChange={this.loginChange} 
+        newUserInfo={this.newUserInfo} />)
+    }
   }
 
   render() {
     return (
       <div className="App">
-         <Welcome submitNew={this.submitNew} logInSubmit={this.logInSubmit} loginChange={this.loginChange} newUserInfo={this.newUserInfo} />
+         {this.switchViews()}
       </div>
     );
   }
