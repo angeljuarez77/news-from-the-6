@@ -10,7 +10,8 @@
     "resetDb": "node resetDb.js",
     "seed": "node seed.js",
     "debug": "nodemon --inspect-brk server.js",
-    "repop": "node resetDb.js && node seed.js"
+    "repop": "node resetDb.js && node seed.js",
+    "doAll": "node resetDb.js && node seed.js && npm run dev && cd client && yarn install && yarn start"
   },
   "repository": {
     "type": "git",
