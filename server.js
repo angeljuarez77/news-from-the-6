@@ -91,9 +91,9 @@ app.get('/posts/:jid', async (req, res) => {
         console.log(e);
     }
 });
-app.post('/posts', async (req, res) => {
+app.post('/posts', passport.authenticate('jwt', {session: false}), async (req, res) => {
  try {
-    //
+    // read jwt and find their access level if access level === 2 then they could go ahead. If not then rejection
     await Post.create(req.body);
  } catch (e){
      console.log(e);

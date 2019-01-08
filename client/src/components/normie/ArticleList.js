@@ -1,20 +1,17 @@
 import React from 'react';
-// import axios from 'axios';
+import Article from './Article';
 
-export default class LoggedinJourny extends React.Component{
+export default class ArticleList extends React.Component{
   constructor(props){
     super(props);
 
     this.state = {};
   }
 
-  postSubmit(){
-  }
-
   render(){
     return(
       <div>
-        <h1>LoggedinJourny component</h1>
+        <Article news={this.props.articles} />
       </div>
     )
   }

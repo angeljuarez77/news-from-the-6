@@ -1,6 +1,6 @@
 import React from 'react';
 import WelcomeForm from './WelcomeForm';
-import axios from 'axios';
+// import axios from 'axios';
 import Login from './Login';
 
 export default class Welcome extends React.Component{

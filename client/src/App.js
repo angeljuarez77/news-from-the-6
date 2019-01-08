@@ -4,7 +4,6 @@ import Welcome from './components/Welcome'
 import axios from 'axios';
 import LoggedinNorm from './components/normie/LogginNorm';
 import Loggedinadmin from './components/admin/LoggedinAdmin';
-import LoggedinAdmin from './components/admin/LoggedinAdmin';
 import Loggedinjourny from './components/journalist/LoggedinJourny';
 
 class App extends Component {
@@ -24,6 +23,9 @@ class App extends Component {
 			},
       token: null,
       view: 'welcome',
+      user_info: {
+        id: '',
+      },
 		};
     this.logInSubmit = this.logInSubmit.bind(this);
     this.submitNew = this.submitNew.bind(this);
@@ -31,17 +33,33 @@ class App extends Component {
     this.loginChange = this.loginChange.bind(this);
   }
 
+  buildHeaders(){
+    const { token } = this.state;
+    return{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+  }
+
   submitNew(e){
 		e.preventDefault();
 		axios.post('http://localhost:3001/users', this.state.newUser)
-		.then(res => this.setState({token: res.data.jwt, view: res.data.loggedin })).catch(e => console.log(e));
+		.then(
+      res => {
+        localStorage.setItem('token', res.data.jwt)
+        this.setState({token: res.data.jwt, view: res.data.loggedin })
+      }
+      ).catch(e => console.log(e));
 	}
   logInSubmit(e){
 		e.preventDefault();
 		axios.post('http://localhost:3001/signin', this.state.login)
 		.then(
-      res => 
+      res => {
+      localStorage.setItem('token', res.data.jwt);
       this.setState({token: res.data.jwt, view: res.data.view})
+    }
       ).catch(e => console.log(e));
   }
   
@@ -69,7 +87,7 @@ class App extends Component {
       case 'loggedinnorm':
       return (<LoggedinNorm />)
       case 'loggedinadmin':
-      return(<LoggedinAdmin />)
+      return(<Loggedinadmin />)
       case 'loggedinjourny':
       return(<Loggedinjourny />)
       case 'welcome':
@@ -90,7 +108,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-         {this.switchViews()}
+         {/* {this.switchViews()} */}
+         <LoggedinNorm />
       </div>
     );
   }
