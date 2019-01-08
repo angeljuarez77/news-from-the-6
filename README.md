@@ -51,6 +51,11 @@ This is going to be an app to show news articles about whatever. Like the Wall S
 
 ### Code Example
 ### Installation instructions
++ Clone down repo
++ run npm i at root level
++ cd client
++ yarn install
++ yarn start
 
 #TL;DR
 I'm making a news web app with different levels of access and maybe server side rendering so that I could show them a preview if they are not logged in first.
