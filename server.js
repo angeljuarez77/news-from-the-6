@@ -57,7 +57,7 @@ app.post('/users', async (req, res) => {
             email,
             access_level
         })
-        res.json({ user, token });
+        res.json({ user, token, view: 'loggedinnorm'});
     } catch (e) {console.log(e)}
 });
 

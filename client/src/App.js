@@ -48,7 +48,7 @@ class App extends Component {
 		.then(
       res => {
         localStorage.setItem('token', res.data.jwt)
-        this.setState({token: res.data.jwt, view: res.data.loggedin })
+        this.setState({token: res.data.jwt, view: res.data.view })
       }
       ).catch(e => console.log(e));
 	}
@@ -108,8 +108,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-         {/* {this.switchViews()} */}
-         <LoggedinNorm />
+         {this.switchViews()}
+         {/* <LoggedinNorm /> */}
       </div>
     );
   }
