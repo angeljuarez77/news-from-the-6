@@ -50,11 +50,16 @@ This is going to be an app to show news articles about whatever. Like the Wall S
 + Actual Email confirmation 
 
 ### Code Example
+
 ### Installation instructions
 + Clone down repo
++ In command line run each of these seperately
+    + psql
+    + CREATE DATABASE final_project;
 + run npm i at root level
-+ npm run repop 
++ npm run repop
 + npm run dev
++ Open a new tab in your terminal or a new terminal window
 + cd client
 + yarn install
 + yarn start
