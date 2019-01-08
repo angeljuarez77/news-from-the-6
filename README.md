@@ -53,7 +53,8 @@ This is going to be an app to show news articles about whatever. Like the Wall S
 ### Installation instructions
 + Clone down repo
 + run npm i at root level
-+ run npm repop
++ npm run repop 
++ npm run dev
 + cd client
 + yarn install
 + yarn start
