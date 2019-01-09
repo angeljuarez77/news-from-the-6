@@ -14,10 +14,18 @@ export default class LoggedinNorm extends React.Component{
     this.state = {
       view: '',
       news: [],
+      chosenAccount: {
+        journalist: {
+          email: '',
+          user_name: '', 
+          id: '',
+          access_level: '',
+        }, 
+        posts: [],
+      },
     };
     this.setView = this.setView.bind(this);
     this.findPerson = this.findPerson.bind(this);
-    this.findViewandPerson = this.findViewandPerson.bind(this);
   }
   
   async getNews(){
@@ -31,11 +39,10 @@ export default class LoggedinNorm extends React.Component{
     }
   }
   async findPerson(e){
-    // debugger;
-    const chosenJournalist = e.target.id;    
-    console.log(chosenJournalist);
+    const chosenJournalist = e.target.id;
     const person = await axios.get(`${BASEURL}aboutjournalist/${chosenJournalist}`);
-    console.log(person);
+    console.log(person.data);
+    this.setState({chosenAccount: person.data});
   }
   async componentDidMount(){
     await this.getNews();
@@ -48,15 +55,11 @@ export default class LoggedinNorm extends React.Component{
       view: view
     });
   }
-  async findViewandPerson(e){
-    this.setView(e);
-    await this.findPerson(e);
-  }
   getView(){
     switch(this.state.view){
       case 'Journalists':
         return(
-          <JournaList findViewandPerson={this.findViewandPerson} />
+          <JournaList setView={this.setView} findPerson={this.findPerson} />
         )
       case 'Dashboard':
         return(
@@ -64,7 +67,7 @@ export default class LoggedinNorm extends React.Component{
         )
       case 'Person':
           return(
-            <Person />
+            <Person info={this.state.chosenAccount} />
           )
       default:
         return(

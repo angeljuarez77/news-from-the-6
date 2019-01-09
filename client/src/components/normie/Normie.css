@@ -1,3 +1,7 @@
+.list-item-inline{
+  width: min-content;
+  margin: 0 auto;
+}
 .journalist-list-item{
   margin: 0 auto;
   border: solid black 1px;
@@ -6,4 +10,7 @@
 }
 .journalist-list-item:hover {
   background-color: rgba(108, 7, 133, 0.3);
+}
+.shit{
+  border: solid orange 2px;
 }

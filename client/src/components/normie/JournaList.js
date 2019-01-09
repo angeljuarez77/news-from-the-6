@@ -27,8 +27,13 @@ export default class JournaList extends React.Component{
       <div>
         {
           this.state.journalists.map(
-            journalist => 
-            <JournalistItem key={journalist.id} name={journalist.user_name} userId={journalist.id} findViewandPerson={this.props.findViewandPerson} />
+            journalist =>
+            <JournalistItem 
+            key={journalist.id} 
+            name={journalist.user_name} 
+            userId={journalist.id}
+            setView={this.props.setView}
+            />
           )
         }
       </div>
