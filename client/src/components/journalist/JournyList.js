@@ -1,8 +1,6 @@
 import React from 'react';
 import JArticle from './JArticle';
-import axios from 'axios';
 
-const BASEURL = 'http://localhost:3001/';
 export default class JournyList extends React.Component{
   constructor(props){
     super(props);
