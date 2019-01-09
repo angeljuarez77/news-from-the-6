@@ -16,24 +16,29 @@ app.use(cors());
 // everything with authentication
 app.post('/signin', async (req, res) => {
     try {
-        const attempt = await User.findAll({
+        const attempt = await User.findOne({
             where: {
             user_name: req.body.user_name
         }});
-       const userresp = attempt[0].dataValues;
+       const userresp = attempt.dataValues;
        const validation = bcrypt.compareSync(req.body.password, userresp.password);
        const { user_name, access_level } = userresp;
+       const toSend = {
+           id: userresp.id,
+           username: userresp.email,
+           email: userresp.email,
+       }
        if(validation){
            const jwt = sign({
                user_name,
                access_level
            });
            if(access_level === 1){
-            res.json({ jwt, view: 'loggedinnorm' });
+            res.json({ jwt, view: 'loggedinnorm', toSend });
            } else if (access_level === 2){
-               res.json({jwt, view: 'loggedinjourny'})
+               res.json({jwt, view: 'loggedinjourny', toSend})
            } else if(access_level === 3){
-               res.json({jwt, view: 'loggedinadmin'})
+               res.json({jwt, view: 'loggedinadmin', toSend })
            }
        } else { 
            res.json({message: "You got it wrong!"})
@@ -64,7 +69,9 @@ app.post('/users', async (req, res) => {
 // Full CRUD for posts
 app.get('/posts', async (req, res) => {
     try {
-        const posts = await Post.findAll();
+        const posts = await Post.findAll({
+            order: [['created_at', 'DESC']]
+        });
         res.json({ posts });
     } catch(e){
         console.log(e);
@@ -91,10 +98,15 @@ app.get('/posts/:jid', async (req, res) => {
         console.log(e);
     }
 });
-app.post('/posts', passport.authenticate('jwt', {session: false}), async (req, res) => {
+app.post('/posts', async (req, res) => {
  try {
-    // read jwt and find their access level if access level === 2 then they could go ahead. If not then rejection
-    await Post.create(req.body);
+    console.log(req.body);
+    const user = await User.findByPk(req.body.user_info.id);
+    await Post.create({
+        title: req.body.newArticle.title,
+        content: req.body.newArticle.content,
+        user_id: user.id
+    });
  } catch (e){
      console.log(e);
  }

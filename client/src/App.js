@@ -25,6 +25,8 @@ class App extends Component {
       view: 'welcome',
       user_info: {
         id: '',
+        user_name: '',
+        email: ''
       },
 		};
     this.logInSubmit = this.logInSubmit.bind(this);
@@ -47,8 +49,9 @@ class App extends Component {
 		axios.post('http://localhost:3001/users', this.state.newUser)
 		.then(
       res => {
-        localStorage.setItem('token', res.data.jwt)
-        this.setState({token: res.data.jwt, view: res.data.view })
+        localStorage.setItem('token', res.data.jwt);
+        localStorage.setItem('user_id', res.data.toSend.id);
+        this.setState({token: res.data.jwt, view: res.data.view });
       }
       ).catch(e => console.log(e));
 	}
@@ -57,8 +60,17 @@ class App extends Component {
 		axios.post('http://localhost:3001/signin', this.state.login)
 		.then(
       res => {
-      localStorage.setItem('token', res.data.jwt);
-      this.setState({token: res.data.jwt, view: res.data.view})
+        localStorage.setItem('token', res.data.jwt);
+        localStorage.setItem('user_id', res.data.toSend.id);
+        this.setState({
+          token: res.data.jwt, 
+          view: res.data.view,
+          user_info: {
+            id: res.data.toSend.id,
+            user_name: res.data.toSend.username,
+            email: res.data.toSend.email
+          }
+        })
     }
       ).catch(e => console.log(e));
   }
@@ -85,11 +97,11 @@ class App extends Component {
   switchViews(){
     switch(this.state.view){
       case 'loggedinnorm':
-      return (<LoggedinNorm />)
+      return (<LoggedinNorm userInfo={this.state.user_info} />)
       case 'loggedinadmin':
-      return(<Loggedinadmin />)
+      return(<Loggedinadmin userInfo={this.state.user_info} />)
       case 'loggedinjourny':
-      return(<Loggedinjourny />)
+      return(<Loggedinjourny userInfo={this.state.user_info} />)
       case 'welcome':
       return (<Welcome 
         submitNew={this.submitNew} 
@@ -109,7 +121,7 @@ class App extends Component {
     return (
       <div className="App">
          {this.switchViews()}
-         {/* <LoggedinNorm /> */}
+         {/* <Loggedinjourny /> */}
       </div>
     );
   }
