@@ -10,8 +10,6 @@ export default class Welcome extends React.Component{
 		this.state = {};
 	}
 
-	
-
 	render(){
 		return(
 			<div>

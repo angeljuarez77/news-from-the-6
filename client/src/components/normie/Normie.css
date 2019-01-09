@@ -1,0 +1,9 @@
+.journalist-list-item{
+  margin: 0 auto;
+  border: solid black 1px;
+  border-radius: 12px;
+  width: 25%;
+}
+.journalist-list-item:hover {
+  background-color: rgba(108, 7, 133, 0.3);
+}

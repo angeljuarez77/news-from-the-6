@@ -65,6 +65,42 @@ app.post('/users', async (req, res) => {
         res.json({ user, token, view: 'loggedinnorm'});
     } catch (e) {console.log(e)}
 });
+app.get('/journalists', async (req, res) => {
+    try {
+        const journalists = await User.findAll({
+            where: {
+                access_level: 2
+            }
+        });
+        res.json(journalists);
+    } catch(e) {
+        console.log(e);
+    }
+});
+app.get('/aboutjournalist/:journalistid', async (req, res) => {
+    try {
+        const person = await User.findOne({
+            where: {
+                access_level: 2,
+                id: req.params.journalistid       
+            }
+        });
+        const journalist = {
+            email: person.email,
+            user_name: person.user_name,
+            id: person.id,
+            access_level: person.access_level
+        }
+        const posts = await Post.findAll({
+            where: {
+                user_id: req.params.journalistid
+            }
+        });
+        res.json({ journalist, posts });
+    } catch(e) {
+        console.log(e);
+    }
+});
 
 // Full CRUD for posts
 app.get('/posts', async (req, res) => {
@@ -85,17 +121,29 @@ app.get('/post/:id', async (req, res) => {
         console.log(e);
     }
 });
-// doesn't completely work. I would have to finish the associations in my db first
-app.get('/posts/:jid', async (req, res) => {
+app.get('/posts/:journalistid', async (req, res) => {
     try {
         const specificPosts = await Post.findAll({
             where: {
-                user_id: req.params.jid
+                user_id: req.params.journalistid
            }
         });
         res.json({ specificPosts });
     } catch(e) {
         console.log(e);
+    }
+});
+app.get('/posts/:journalistid/:postid', async (req, res) => {
+    try{
+        const post = await Post.findAll({
+            where: {
+                user_id: req.params.journalistid,
+                id: req.params.postid        
+            }
+        });
+        res.json(post);
+    } catch(e){
+        console.log(e)
     }
 });
 app.post('/posts', async (req, res) => {

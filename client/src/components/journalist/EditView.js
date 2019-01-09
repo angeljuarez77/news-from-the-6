@@ -20,7 +20,7 @@ export default class EditView extends React.Component{
   sendUpdate(e){
     e.preventDefault();
     axios.put(`${BASEURL}post/${this.state.articleid}`, this.state.article).then(
-      res => console.log(res.data)
+      res => {}
     ).catch(e => console.log(e))
   }
   updateChange(e){
