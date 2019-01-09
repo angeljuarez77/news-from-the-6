@@ -14,7 +14,8 @@ export default class JArticle extends React.Component{
         <div key={this.props.id} className="article-piece">
           <h1>{this.props.title}</h1>
           <p>{this.props.content}</p>
-          <button id={this.props.id}>Delete</button><button>Edit</button>
+          <button id={this.props.id} onClick={this.props.onClick}>Delete</button>
+          <button data-articlenum={this.props.id} data-view="Edit View" onClick={this.props.editClick}>Edit</button>
         </div>
       )
     } else{
