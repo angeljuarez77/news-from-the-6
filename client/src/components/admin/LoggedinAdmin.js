@@ -1,5 +1,5 @@
 import React from 'react';
-
+import NewUser from './NewUser'
 export default class LoggedinAdmin extends React.Component{
   constructor(props){
     super(props);

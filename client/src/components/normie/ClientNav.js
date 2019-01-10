@@ -11,8 +11,8 @@ export default class ClientNav extends React.Component{
     return(
       <div>
          <nav onClick={this.props.onClick}>
-          <button id="Dashboard">Dashboard</button>
-          <button id="Journalists">Journalists</button>
+          <button color="link" id="Dashboard">Dashboard</button>
+          <button color="link" id="Journalists">Journalists</button>
         </nav>
       </div>
     )
