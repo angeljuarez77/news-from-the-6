@@ -32,7 +32,7 @@ export default class JournaList extends React.Component{
             key={journalist.id} 
             name={journalist.user_name} 
             userId={journalist.id}
-            setView={this.props.setView}
+            onClick={this.props.onClick}
             />
           )
         }

@@ -126,7 +126,8 @@ app.get('/posts/:journalistid', async (req, res) => {
         const specificPosts = await Post.findAll({
             where: {
                 user_id: req.params.journalistid
-           }
+           },
+           order: [['created_at', 'ASC']]
         });
         res.json({ specificPosts });
     } catch(e) {

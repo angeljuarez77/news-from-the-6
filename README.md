@@ -31,10 +31,6 @@ This is going to be an app to show news articles about whatever. Like the Wall S
 
 + You have full CRUD functionality on your own posts
 
-+ If you are an authorized person you could delete someone elses posts ("loggedin/admin/post/:id" again without any auth functionality)
-
-+ You could scroll down an article if you're not logged in but after a certain point it wouldn't allow you to keep scrolling unless you're logged in
-
 + Auth implementation (basically seal away certain routes to certain people. Everyone has access to loggedin as long as their credentials is right. Then some people would have access to journalist functionalities and very few would have admin power. I don't know how I'm going to do this.)
 
 ### Post M.V.P.
@@ -48,6 +44,10 @@ This is going to be an app to show news articles about whatever. Like the Wall S
 + Likes and dislikes on news articles?
 
 + Actual Email confirmation 
+
++ If you are an authorized person you could delete someone elses posts ("loggedin/admin/post/:id" again without any auth functionality)
+
++ You could scroll down an article if you're not logged in but after a certain point it wouldn't allow you to keep scrolling unless you're logged in
 
 ### Code Example
 

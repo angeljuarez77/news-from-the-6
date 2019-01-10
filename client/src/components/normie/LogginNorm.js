@@ -4,6 +4,7 @@ import ArticleList from './ArticleList';
 import ClientNav from './ClientNav';
 import JournaList from './JournaList';
 import Person from './Person';
+import SingleArticlePage from './SingleArticlePage';
 import './Normie.css';
 
 const BASEURL = 'http://localhost:3001/';
@@ -26,6 +27,8 @@ export default class LoggedinNorm extends React.Component{
     };
     this.setView = this.setView.bind(this);
     this.findPerson = this.findPerson.bind(this);
+    this.findAndSet = this.findAndSet.bind(this);
+    this.findSingleandSet = this.findSingleandSet.bind(this);
   }
   
   async getNews(){
@@ -39,15 +42,33 @@ export default class LoggedinNorm extends React.Component{
     }
   }
   async findPerson(e){
-    const chosenJournalist = e.target.id;
+    const chosenJournalist = e.target.dataset.journy;
     const person = await axios.get(`${BASEURL}aboutjournalist/${chosenJournalist}`);
-    console.log(person.data);
     this.setState({chosenAccount: person.data});
   }
   async componentDidMount(){
     await this.getNews();
   }
 
+  async findSingle(e){
+    const byWho = e.target.dataset.userid;
+    const chosen = e.target.dataset.postid;
+    const article = await axios.get(`${BASEURL}posts/${byWho}/${chosen}`);
+    this.setState({
+      singleArticle: article.data[0]
+    });
+  }
+  async findSingleandSet(e){
+    e.persist();
+    await this.findSingle(e);
+    this.setView(e);
+  }
+
+  async findAndSet(e){
+    e.persist();
+    await this.findPerson(e);
+    this.setView(e);
+  }
 
   setView(e){
     const view = e.target.id || e.target.dataset.view;
@@ -59,7 +80,7 @@ export default class LoggedinNorm extends React.Component{
     switch(this.state.view){
       case 'Journalists':
         return(
-          <JournaList setView={this.setView} findPerson={this.findPerson} />
+          <JournaList onClick={this.findAndSet}/>
         )
       case 'Dashboard':
         return(
@@ -67,8 +88,12 @@ export default class LoggedinNorm extends React.Component{
         )
       case 'Person':
           return(
-            <Person info={this.state.chosenAccount} />
+            <Person info={this.state.chosenAccount} setView={this.findSingleandSet}/>
           )
+      case 'single-article-view':
+            return(
+              <SingleArticlePage articleinfo={this.state.singleArticle} />
+            )
       default:
         return(
           <ArticleList articles={this.state.news} />

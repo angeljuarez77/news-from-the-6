@@ -1,4 +1,5 @@
 const { Post, User } = require('./models');
+const bcrypt = require('bcrypt-nodejs');
 
 const dummyPosts = async () => {
         await Post.destroy({where:{}});
@@ -35,37 +36,58 @@ const dummyPosts = async () => {
         process.exit();
 };
 
-const dummyUsers =  async () => {
-    try {
-        await User.destroy({where: {}});
-        await User.bulkCreate([
+const dummyUsers =  () => {
+        User.destroy({where: {}}).then(() => {}).catch(e => console.log(e));
+        User.bulkCreate([
             {
-                user_name: 'AngelJ77',
+                user_name: 'client',
                 access_level: 1,
-                email: 'angeljuarez729@gmail.com',
-                password: 'password'
+                email: 'client',
+                password: '$2a$10$0rltmRga9k5voAs93nf54.CSvjnronuVX2CVtnkHkgVnVVgzjsLFW'
             },
             {
-                user_name: 'test',
+                user_name: 'secondclient',
                 access_level: 1,
-                email: 'test',
-                password: 'test'
+                email: 'secondclient',
+                password: '$2a$10$CV84hcDs8ROosJlIrO00iO3Ptp34RsbIH.b7RCLLR/9GLB88our.O'
+            },
+            {
+                user_name: 'jtest',
+                access_level: 2,
+                email: 'jtest',
+                password: '$2a$10$HQdrvn99nGuFntfE.CGBtubFdTUAV/o4b8A7.O62LP/DYNpxZBRzC'
+            },
+            {
+                user_name: 'secondjtest',
+                access_level: 2,
+                email: 'secondjtest',
+                password: '$2a$10$hZ8MiuM5atGQnSl6w6iiSOHY5NuOUh/MfszI5jpQMYJqqOjrPinkG'
+            },
+            {
+                user_name: 'admintest',
+                access_level: 3,
+                email: 'admintest',
+                password: '$2a$10$QapHmCSryMsS3syaqdqdfu/dFFimh/f8yT7YILOjHv9PHopTcv0nq' 
             }
-        ]);
-        await User.create({
-            user_name: 'thing',
-            access_level: 1,
-            email: 'thing',
-            password: 'thing'
-        });
-        process.exit();
-    } catch(e) {console.log(e)}
+        ]).then(() => {}).catch(e => console.log(e));
 };
-
+async function associatePosts(){
+    try {
+        const firstj = await User.findByPk(3)
+        const secondj = await User.findByPk(4);
+        const posts = await Post.findAll();
+        console.log('====================================');
+        console.log(posts);
+        console.log('====================================');
+    } catch(e){
+        console.log(e);
+    }
+}
 const run = async () => {
     try{
         await dummyPosts();
-        await dummyUsers();
     } catch{e => console.log(e)}
 };
+dummyUsers();
 run();
+associatePosts();

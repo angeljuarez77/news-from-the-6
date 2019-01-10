@@ -12,12 +12,25 @@ export default class JournalistItem extends React.Component{
       <div 
       key={this.props.userId}
       className="journalist-list-item"
-      data-view="Person">
-        <div data-view="Person" onClick={this.props.setView}>
-          <h1 data-view="Person" onClick={this.props.setView}className="list-item-inline">{this.props.name}</h1>
-          
-          <h2 data-view="Person" onClick={this.props.setView}className="list-item-inline">{this.props.userId}</h2>
-        </div>
+      data-view="Person"
+      data-journy={this.props.userId}
+      onClick={this.props.onClick}>
+          <div 
+          data-view="Person" 
+          data-journy={this.props.userId}
+          onClick={this.props.onClick}>
+
+                <h1 data-view="Person" 
+                className="list-item-inline" 
+                data-journy={this.props.userId}
+                onClick={this.props.onClick}>{this.props.name}</h1>
+
+                <h2 data-view="Person" 
+                className="list-item-inline"
+                data-journy={this.props.userId}
+                onClick={this.props.onClick}>{this.props.userId}</h2>
+
+          </div>
       </div>
     )
   }

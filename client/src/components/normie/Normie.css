@@ -11,6 +11,13 @@
 .journalist-list-item:hover {
   background-color: rgba(108, 7, 133, 0.3);
 }
-.shit{
-  border: solid orange 2px;
+.person-post{
+  margin: 2% auto;
+  border: solid white 1px;
+  border-radius: 12px;
+  padding: 2%;
+  width: 77%;
+}
+.person-post:hover {
+  background-color: rgba(108, 7, 133, 0.3);
 }
