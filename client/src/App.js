@@ -5,7 +5,8 @@ import axios from 'axios';
 import LoggedinNorm from './components/normie/LogginNorm';
 import Loggedinadmin from './components/admin/LoggedinAdmin';
 import Loggedinjourny from './components/journalist/LoggedinJourny';
-
+// I added this new base url
+const BASEURL = 'https://limitless-refuge-23473.herokuapp.com/'
 class App extends Component {
   constructor(props){
     super(props);
@@ -46,7 +47,7 @@ class App extends Component {
 
   submitNew(e){
 		e.preventDefault();
-		axios.post('http://localhost:3001/users', this.state.newUser)
+		axios.post(`${BASEURL}users`, this.state.newUser)
 		.then(
       res => {
         localStorage.setItem('token', res.data.jwt);
@@ -57,7 +58,7 @@ class App extends Component {
 	}
   logInSubmit(e){
 		e.preventDefault();
-		axios.post('http://localhost:3001/signin', this.state.login)
+		axios.post(`${BASEURL}signin'`, this.state.login)
 		.then(
       res => {
         localStorage.setItem('token', res.data.jwt);

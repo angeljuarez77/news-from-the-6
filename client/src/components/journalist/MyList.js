@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import JournyList from './JournyList';
 
-const BASEURL = 'http://localhost:3001/';
+const BASEURL = 'https://limitless-refuge-23473.herokuapp.com/'
+
 export default class MyList extends React.Component{
   constructor(props){
     super(props);

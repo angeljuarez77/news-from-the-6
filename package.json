@@ -12,7 +12,8 @@
     "debug": "nodemon --inspect-brk server.js",
     "repop": "node resetDb.js && node seed.js",
     "doBack": "node resetDb.js && node seed.js && npm run dev",
-    "doFront": "cd client && yarn install && yarn start"
+    "doFront": "cd client && yarn install && yarn start",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",

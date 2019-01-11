@@ -7,7 +7,7 @@ import Person from './Person';
 import SingleArticlePage from './SingleArticlePage';
 import './Normie.css';
 
-const BASEURL = 'http://localhost:3001/';
+const BASEURL = 'https://limitless-refuge-23473.herokuapp.com/'
 export default class LoggedinNorm extends React.Component{
   constructor(props){
     super(props);

@@ -6,7 +6,8 @@ import MyList from './MyList';
 import NewArticle from './NewArticle';
 import EditView from './EditView';
 
-const BASEURL = 'http://localhost:3001/';
+const BASEURL = 'https://limitless-refuge-23473.herokuapp.com/'
+
 export default class LoggedinJourny extends React.Component{
   constructor(props){
     super(props);
