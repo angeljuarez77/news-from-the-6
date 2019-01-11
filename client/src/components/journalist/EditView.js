@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
-const BASEURL = 'http://localhost:3001/';
+const BASEURL = 'https://limitless-refuge-23473.herokuapp.com/'
+
 export default class EditView extends React.Component{
   constructor(props){
     super(props);
