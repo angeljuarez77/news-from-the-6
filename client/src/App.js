@@ -7,6 +7,7 @@ import Loggedinadmin from './components/admin/LoggedinAdmin';
 import Loggedinjourny from './components/journalist/LoggedinJourny';
 // I added this new base url
 const BASEURL = 'https://limitless-refuge-23473.herokuapp.com/'
+// https://limitless-refuge-23473.herokuapp.com/
 class App extends Component {
   constructor(props){
     super(props);
