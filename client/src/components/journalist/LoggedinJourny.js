@@ -6,7 +6,7 @@ import MyList from './MyList';
 import NewArticle from './NewArticle';
 import EditView from './EditView';
 
-const BASEURL = 'https://limitless-refuge-23473.herokuapp.com/'
+const BASEURL = 'https://sleepy-badlands-74953.herokuapp.com/'
 
 export default class LoggedinJourny extends React.Component{
   constructor(props){

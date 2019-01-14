@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const BASEURL = 'https://limitless-refuge-23473.herokuapp.com/'
+const BASEURL = 'https://sleepy-badlands-74953.herokuapp.com/'
 
 export default class EditView extends React.Component{
   constructor(props){

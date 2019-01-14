@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import JournalistItem from './JournalistItem';
 
-const BASEURL = 'https://limitless-refuge-23473.herokuapp.com/'
+const BASEURL = 'https://sleepy-badlands-74953.herokuapp.com/'
 export default class JournaList extends React.Component{
   constructor(props){
     super(props);
