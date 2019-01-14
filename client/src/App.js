@@ -59,7 +59,7 @@ class App extends Component {
 	}
   logInSubmit(e){
 		e.preventDefault();
-		axios.post(`${BASEURL}signin'`, this.state.login)
+		axios.post(`${BASEURL}signin`, this.state.login)
 		.then(
       res => {
         localStorage.setItem('token', res.data.jwt);

@@ -10,7 +10,7 @@ export default class LoginForm extends React.Component{
     render(){
         return(
             <div>
-                <h1>Login Form component</h1>
+                <h1>Log In!</h1>
                 <form onSubmit={this.props.onSubmit} onChange={this.props.onChange}>
                     Username: <input type="text" id="user_name"/>
                     Password: <input type="text" id="password"/>
