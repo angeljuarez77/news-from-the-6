@@ -1,8 +1,7 @@
 const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt-nodejs');
 
-const sequelize = new Sequelize({
-  database: 'final_project',
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   operatorsAliases: false,
   define: {
