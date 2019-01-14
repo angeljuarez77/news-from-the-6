@@ -46,7 +46,7 @@ app.post('/signin', async (req, res) => {
     } catch (e) { console.log(e) }
 });
 // here I am trying to require a jwt
-app.get('/users', passport.authenticate('jwt', {session: false}), async (req, res) => {
+app.get('/users', async (req, res) => {
     try {
         const users = await User.findAll();
         res.json({ users });
